@@ -9,48 +9,93 @@ import java.util.concurrent.TimeUnit;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.pages.SearchProduct;
+
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class ProductPageValidation {
 	WebDriver driver;
 	SearchProduct search;
-	
+	WebDriverWait wait;
+	JavascriptExecutor js;
+	ExtentReports reports;
+	ExtentSparkReporter reporter;
 	
   //TC_ProductPage_001
   @Test(dataProvider="productnavigation")
-  public void ProductNavigation(String productName) throws InterruptedException
-  {
-	  search.SearchProductFunc(productName);
-	  search.OpenProductDetails();
-	  Assert.assertEquals(productName,driver.getTitle());
+  public void ProductNavigation(String productName) {
+	  ExtentTest productNavigationTest = reports.createTest("Product Navigation & Title Verification For "+productName);
+	  driver.get("https://demo.opencart.com/");
+	  js.executeScript("window.scrollBy(0,350)");
+	  waitForSomeTime(4);
+	  search.scrollAndOpenProduct(productName);
+	  waitForSomeTime(2);
+	  try {
+		  Assert.assertEquals(driver.getTitle(),productName);
+		  productNavigationTest.log(Status.PASS, "Verified Title for "+productName);
+	  }
+	  catch(AssertionError  e) {
+		  System.out.println("Incorrect title found for "+productName);
+		  productNavigationTest.fail("Incorrect Title displayed for product = "+productName);
+	  }
   }
   
-	//TC_ProductPage_002
+	private void waitForSomeTime(int i) {
+	try {
+		Thread.sleep(i*1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+
+//TC_ProductPage_002
   @Test(dataProvider="productnavigation")
   public void verifyDescription(String productName) throws InterruptedException
   {
-	  search.SearchProductFunc(productName);
-	  search.OpenProductDetails();
-	  String result=search.CheckDesc();
-	  if(!result.equals("active"))
+	  ExtentTest verifyDescriptionTest = reports.createTest("Verify Product Description For "+productName);
+	  driver.get("https://demo.opencart.com/");
+	  js.executeScript("window.scrollBy(0,350)");
+	  waitForSomeTime(4);
+	  search.scrollAndOpenProduct(productName);
+	  waitForSomeTime(2);
+	  js.executeScript("window.scrollBy(0,350)");
+	  String result=search.CheckDescriptionVisible();
+	  if(!result.contains("active"))
 	  {
-		  Assert.fail("Description Field is Not Active");
+		  try {
+			  Assert.fail("Description Field is Not Active"); 
+		  }
+		  catch(AssertionError r) {
+			  System.out.println("Product description not available for "+productName);
+			  verifyDescriptionTest.fail("Product description not available for "+productName);
+		  }
+	  }
+	  else {
+		  verifyDescriptionTest.pass("Product description verified for "+productName);
 	  }
 	  
   }
-  
-	
-	//TC_ProductPage_003
+  	
+  @Ignore
   @Test(dataProvider="productnavigation")
   public void verifySpecification(String productName) throws InterruptedException
   {
@@ -58,13 +103,13 @@ public class ProductPageValidation {
 	  search.OpenProductDetails();
 	  String linkText= search.ClickSpecs();
 	  String result=search.CheckSpecs();
-	  if(!(result.equals("active") && linkText.equals("Specification")))
+	  if(!(result.contains("active") && linkText.equals("Specification")))
 	  {
 		  Assert.fail("Specification field Not Active");
 	  }
   }
 	
-	//TC_ProductPage_007
+  	@Ignore
 	@Test(dataProvider="productnavigation")
 	public void VerifyReviews(String productName) throws InterruptedException
 	{
@@ -78,7 +123,7 @@ public class ProductPageValidation {
 		}	
 	}
 	
-	//TC_ProductPage_008
+  	@Ignore
 	@Test(dataProvider="productnavigation")
 	public void ReviewFunc(String productName) throws InterruptedException
 	{
@@ -96,7 +141,7 @@ public class ProductPageValidation {
 	}
 	
 	
-	//TC_ProductPage_009
+  	@Ignore
 	@Test
 	public void VerifyFields() throws InterruptedException
 	{
@@ -114,7 +159,7 @@ public class ProductPageValidation {
 	}
 	
 	
-	//TC_ProductPage_010
+  	@Ignore
 	@Test(dataProvider="productnavigation")
 	public void VerifyAddToCart(String productName) throws InterruptedException
 	{
@@ -127,7 +172,7 @@ public class ProductPageValidation {
 		}
 	}
 	
-	//TC_ProductPage_013
+  	@Ignore
 	@Test 
 	public void verifyMandatoryFields() throws InterruptedException
 	{
@@ -144,7 +189,7 @@ public class ProductPageValidation {
 	}
 	
 	
-	//TC_ProductPage_011
+  	@Ignore
 	@Test
 	public void CartAddDate() throws InterruptedException
 	{
@@ -162,7 +207,7 @@ public class ProductPageValidation {
 		}
 	}
 	
-	//Test Case - 012
+  	@Ignore
 	@Test
 	public void verifyQuantity() throws InterruptedException
 	{
@@ -192,8 +237,12 @@ public class ProductPageValidation {
 	  driver.manage().window().maximize();
 	  //implicit wait syntax
 	  driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-	  
+	  wait=new WebDriverWait(driver,30);
+	  js = (JavascriptExecutor) driver;
 	  search=new SearchProduct(driver);
+	  reports = new ExtentReports();
+	  reporter = new ExtentSparkReporter("Test Report.html");
+	  reports.attachReporter(reporter);
 	  PageFactory.initElements(driver,search);
   }
   
@@ -222,6 +271,7 @@ public class ProductPageValidation {
   @AfterClass
   public void afterClass() throws InterruptedException {
 	  driver.quit();
+	  reports.flush();
   }
 
 }

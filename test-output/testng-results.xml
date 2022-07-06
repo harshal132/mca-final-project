@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="8" total="16" passed="8">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="67821" started-at="2022-07-06T02:13:22 IST" finished-at="2022-07-06T02:14:30 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="67821" started-at="2022-07-06T02:13:22 IST" finished-at="2022-07-06T02:14:30 IST">
+      <class name="com.tests.ProductPageValidation">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="beforeClass" is-config="true" duration-ms="6195" started-at="2022-07-06T02:13:22 IST" finished-at="2022-07-06T02:13:28 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="ProductNavigation(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="ProductNavigation" duration-ms="8149" started-at="2022-07-06T02:13:30 IST" data-provider="productnavigation" finished-at="2022-07-06T02:13:38 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[MacBook]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ProductNavigation -->
+        <test-method status="PASS" signature="ProductNavigation(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="ProductNavigation" duration-ms="7426" started-at="2022-07-06T02:13:38 IST" data-provider="productnavigation" finished-at="2022-07-06T02:13:45 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Apple Cinema 30]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ProductNavigation -->
+        <test-method status="PASS" signature="ProductNavigation(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="ProductNavigation" duration-ms="7572" started-at="2022-07-06T02:13:45 IST" data-provider="productnavigation" finished-at="2022-07-06T02:13:53 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[iPhone]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ProductNavigation -->
+        <test-method status="PASS" signature="ProductNavigation(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="ProductNavigation" duration-ms="7093" started-at="2022-07-06T02:13:53 IST" data-provider="productnavigation" finished-at="2022-07-06T02:14:00 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Canon EOS 5D]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ProductNavigation -->
+        <test-method status="PASS" signature="verifyDescription(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="verifyDescription" duration-ms="7192" started-at="2022-07-06T02:14:00 IST" data-provider="productnavigation" finished-at="2022-07-06T02:14:07 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[MacBook]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDescription -->
+        <test-method status="PASS" signature="verifyDescription(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="verifyDescription" duration-ms="7254" started-at="2022-07-06T02:14:07 IST" data-provider="productnavigation" finished-at="2022-07-06T02:14:14 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Apple Cinema 30]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDescription -->
+        <test-method status="PASS" signature="verifyDescription(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="verifyDescription" duration-ms="7094" started-at="2022-07-06T02:14:14 IST" data-provider="productnavigation" finished-at="2022-07-06T02:14:21 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[iPhone]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDescription -->
+        <test-method status="PASS" signature="verifyDescription(java.lang.String)[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="verifyDescription" duration-ms="7196" started-at="2022-07-06T02:14:21 IST" data-provider="productnavigation" finished-at="2022-07-06T02:14:29 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Canon EOS 5D]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyDescription -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.tests.ProductPageValidation@76b0bfab]" name="afterClass" is-config="true" duration-ms="1313" started-at="2022-07-06T02:14:29 IST" finished-at="2022-07-06T02:14:30 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+      </class> <!-- com.tests.ProductPageValidation -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

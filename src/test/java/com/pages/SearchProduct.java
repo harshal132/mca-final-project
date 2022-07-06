@@ -1,5 +1,7 @@
 package com.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -163,5 +165,14 @@ public class SearchProduct {
 	
 	public SearchProduct(WebDriver driver) {
 		this.driver=driver;
+	}
+
+	public void scrollAndOpenProduct(String productName) {
+		WebElement productLink = driver.findElement(By.partialLinkText(productName));
+		productLink.click();
+	}
+
+	public String CheckDescriptionVisible() {
+		return driver.findElement(By.id("description-tab")).getAttribute("class");
 	}
 }
