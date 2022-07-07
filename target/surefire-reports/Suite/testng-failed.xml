@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [Suite]">
+  <test thread-count="5" verbose="0" name="ProductPage Validation(failed)">
+    <classes>
+      <class name="com.tests.ProductPageValidation">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="verifySpecification" invocation-numbers="2 3"/>
+          <include name="afterClass"/>
+        </methods>
+      </class> <!-- com.tests.ProductPageValidation -->
+    </classes>
+  </test> <!-- ProductPage Validation(failed) -->
+</suite> <!-- Failed suite [Suite] -->

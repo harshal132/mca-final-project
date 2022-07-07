@@ -22,7 +22,7 @@ public class SearchProduct {
 	@FindBy(xpath="//*[@id='content']/div/div[1]/ul[2]/li[1]")
 	WebElement Description;
 	
-	@FindBy(xpath="//*[@id='content']/div/div[1]/ul[2]/li[2]/a")
+	@FindBy(id="specification-tab")
 	WebElement Specification;
 	
 	@FindBy(partialLinkText = "Reviews (0)")
@@ -174,5 +174,16 @@ public class SearchProduct {
 
 	public String CheckDescriptionVisible() {
 		return driver.findElement(By.id("description-tab")).getAttribute("class");
+	}
+
+	public boolean CheckSpecsAvailable() {
+		try {
+			driver.findElement(By.id("specification-tab")).getText();
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
+		
 	}
 }

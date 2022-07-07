@@ -1,0 +1,12 @@
+com\pages\HomePage.class
+com\pages\AddToCartPage.class
+com\pages\CompareProducts.class
+com\pages\GuestAccount.class
+com\pages\MyAccount.class
+com\pages\Regiter.class
+com\pages\AccountLogin.class
+com\tests\ProductPageValidation.class
+com\pages\CheckoutPage.class
+com\pages\DeliveryDetails.class
+com\pages\SearchProduct.class
+com\tests\RegistrationDataDrivenTest.class

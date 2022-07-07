@@ -95,17 +95,22 @@ public class ProductPageValidation {
 	  
   }
   	
-  @Ignore
   @Test(dataProvider="productnavigation")
-  public void verifySpecification(String productName) throws InterruptedException
-  {
-	  search.SearchProductFunc(productName);
-	  search.OpenProductDetails();
-	  String linkText= search.ClickSpecs();
-	  String result=search.CheckSpecs();
-	  if(!(result.contains("active") && linkText.equals("Specification")))
-	  {
-		  Assert.fail("Specification field Not Active");
+  public void verifySpecification(String productName) throws InterruptedException {
+	  ExtentTest verifySpecificationTest = reports.createTest("Verify Product Specification For "+productName);
+	  driver.get("https://demo.opencart.com/");
+	  js.executeScript("window.scrollBy(0,350)");
+	  waitForSomeTime(4);
+	  search.scrollAndOpenProduct(productName);
+	  waitForSomeTime(2);
+	  js.executeScript("window.scrollBy(0,350)");
+	  boolean result=search.CheckSpecsAvailable();
+	  if(!result) {
+		  verifySpecificationTest.fail("Product specifications not displayed for "+productName);
+		  System.out.println("Product specifications not displayed for "+productName);
+	  }
+	  else {
+		  verifySpecificationTest.pass("Product specifications displayed for "+productName);
 	  }
   }
 	

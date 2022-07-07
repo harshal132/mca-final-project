@@ -6,7 +6,7 @@
       <class name="com.tests.ProductPageValidation">
         <methods>
           <include name="beforeClass"/>
-          <include name="verifyDescription" invocation-numbers="0 1 2 3"/>
+          <include name="verifySpecification" invocation-numbers="2 3"/>
           <include name="afterClass"/>
         </methods>
       </class> <!-- com.tests.ProductPageValidation -->
